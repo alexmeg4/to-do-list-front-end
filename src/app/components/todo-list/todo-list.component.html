@@ -1,0 +1,49 @@
+<div class="todo-list-container">
+  <h1>Todo List</h1>
+  <input
+    type="text"
+    [(ngModel)]="title"
+    placeholder="Add a new to-do"
+    (keydown.enter)="handleAddTodo()"
+  />
+  <button (click)="handleAddTodo()">Add Todo</button>
+  <div class="todo-columns">
+    <div class="todo-column">
+      <h2>To Do</h2>
+      <div class="todo-cards">
+        <div class="todo-card" *ngFor="let todo of todosTodo">
+          <span class="todo-title">{{ todo.title }}</span>
+          <div class="todo-actions">
+            <button (click)="handleUpdateTodo(todo._id, { status: 'in-progress' })">Start</button>
+            <button (click)="handleDeleteTodo(todo._id)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="todo-column">
+      <h2>In Progress</h2>
+      <div class="todo-cards">
+        <div class="todo-card" *ngFor="let todo of todosInProgress">
+          <span class="todo-title">{{ todo.title }}</span>
+          <div class="todo-actions">
+            <button (click)="handleUpdateTodo(todo._id, { status: 'done' })">Complete</button>
+            <button (click)="handleUpdateTodo(todo._id, { status: 'todo' })">Back</button>
+            <button (click)="handleDeleteTodo(todo._id)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="todo-column">
+      <h2>Done</h2>
+      <div class="todo-cards">
+        <div class="todo-card" *ngFor="let todo of todosDone">
+          <span class="todo-title">{{ todo.title }}</span>
+          <div class="todo-actions">
+            <button (click)="handleUpdateTodo(todo._id, { status: 'in-progress' })">Undo</button>
+            <button (click)="handleDeleteTodo(todo._id)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
