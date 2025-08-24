@@ -11,7 +11,7 @@
     <div class="todo-column">
       <h2>To Do</h2>
       <div class="todo-cards">
-        <div class="todo-card" *ngFor="let todo of todosTodo">
+        <div class="todo-card" *ngFor="let todo of todosTodo()">
           <span class="todo-title">{{ todo.title }}</span>
           <div class="todo-actions">
             <button (click)="handleUpdateTodo(todo._id, { status: 'in-progress' })">Start</button>
@@ -23,7 +23,7 @@
     <div class="todo-column">
       <h2>In Progress</h2>
       <div class="todo-cards">
-        <div class="todo-card" *ngFor="let todo of todosInProgress">
+        <div class="todo-card" *ngFor="let todo of todosInProgress()">
           <span class="todo-title">{{ todo.title }}</span>
           <div class="todo-actions">
             <button (click)="handleUpdateTodo(todo._id, { status: 'done' })">Complete</button>
@@ -36,7 +36,7 @@
     <div class="todo-column">
       <h2>Done</h2>
       <div class="todo-cards">
-        <div class="todo-card" *ngFor="let todo of todosDone">
+        <div class="todo-card" *ngFor="let todo of todosDone()">
           <span class="todo-title">{{ todo.title }}</span>
           <div class="todo-actions">
             <button (click)="handleUpdateTodo(todo._id, { status: 'in-progress' })">Undo</button>
