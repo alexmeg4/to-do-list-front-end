@@ -10,6 +10,7 @@ export class TodoListComponent implements OnInit {
   todos: any[] = [];
   title: string = '';
   completed: boolean = false;
+  draggedTodo: any = null;
 
 
   constructor(private todoService: TodoService) {}
@@ -56,5 +57,21 @@ export class TodoListComponent implements OnInit {
 
   todosDone() {
     return this.todos?.filter(t => t.status === 'done') || [];
+  }
+
+  onDragStart(event: DragEvent, todo: any) {
+    this.draggedTodo = todo;
+  }
+
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+  }
+
+  onDrop(event: DragEvent, newStatus: string) {
+    event.preventDefault();
+    if (this.draggedTodo && this.draggedTodo.status !== newStatus) {
+      this.handleUpdateTodo(this.draggedTodo._id, { status: newStatus });
+      this.draggedTodo = null;
+    }
   }
 }
